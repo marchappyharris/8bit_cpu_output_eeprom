@@ -13,7 +13,78 @@
 #define OUTPUT_ENABLED true
 #define OUTPUT_DISABLED false
 
+#define logDEBUG NULL // "DEBG"
+#define logINFO "INFO"
+#define logWARNING "WARN"
+#define logERROR "EROR"
+
+int logLevel = 0;
+
+void log(const char* level, const char *format, ...) {
+  if (level == NULL) {
+    return;
+  }
+
+  char fullFormat[80];
+  char buf[80];
+  sprintf(fullFormat, "%s: %s", level, format);
+
+  va_list args;
+  va_start (args, format);
+  vsprintf(buf, fullFormat, args);
+  va_end (args);
+
+  Serial.print(buf);
+  if (logLevel == 0) {
+    Serial.println("");
+  }
+  else {
+    Serial.print(" ");
+  }
+}
+
+void startLog(char* level, const char *format, ...) {
+  if (level == NULL) {
+    return;
+  }
+
+  char fullFormat[80];
+  char buf[80];
+  sprintf(fullFormat, "%s: %s ... ", level, format);
+
+  va_list args;
+  va_start (args, format);
+  vsprintf(buf, fullFormat, args);
+  va_end (args);
+
+  Serial.print(buf);
+  ++logLevel;
+}
+
+void endLog(char* level, const char *format, ...) {
+  if (level == NULL) {
+    return;
+  }
+
+  char buf[80];
+
+  va_list args;
+  va_start (args, format);
+  vsprintf(buf, format, args);
+  va_end (args);
+
+  Serial.print(buf);
+  --logLevel;
+  if (logLevel == 0) {
+    Serial.println("");
+  }
+  else {
+    Serial.print(" ");
+  }
+}
+
 void setAddress(int address, bool outputEnable) {
+  startLog(logDEBUG, "Setting address=%3x, outputEnable=%i", address, outputEnable);
   int value = address | (outputEnable ? OUTPUT_ENABLED_VALUE : OUTPUT_DISABLED_VALUE);
   shiftOut(SHIFT_DATA_PIN, SHIFT_CLOCK_PIN, MSBFIRST, value >> 8);
   shiftOut(SHIFT_DATA_PIN, SHIFT_CLOCK_PIN, MSBFIRST, value & 0xff);
@@ -21,14 +92,17 @@ void setAddress(int address, bool outputEnable) {
   digitalWrite(SHIFT_LATCH_PIN, LOW);
   digitalWrite(SHIFT_LATCH_PIN, HIGH);
   digitalWrite(SHIFT_LATCH_PIN, LOW);
+  endLog(logDEBUG, "done");
 }
 
 byte readEEPROM(int address) {
   setAddress(address, OUTPUT_ENABLED);
   byte retval = 0;
-  for (int pin = EEPROM_D0_PIN; pin >= EEPROM_D7_PIN; pin++) {
+  for (int pin = EEPROM_D0_PIN; pin <= EEPROM_D7_PIN; ++pin) {
     pinMode(pin, INPUT);
-    retval = (retval << 1) + digitalRead(pin);
+    int bit = digitalRead(pin);
+    retval += (bit << (pin - EEPROM_D0_PIN));
+    log(logDEBUG, "%03x, pin %2i = %i. retval so far = %03x", address,  pin, bit, retval);
   }
   return retval;
 }
@@ -74,18 +148,20 @@ void setup() {
 
   Serial.begin(57600);
   Serial.println("");
-  Serial.println("start");
 
-  char buf[50];
-  for (int i = 0; i < 2048; i += 1) {
-    sprintf(buf, "%03x", i);
-    Serial.println(buf);
+  log(logINFO, "start");
+  
+  for (int i = 0; i < 256; i += 1) {
+    startLog(logDEBUG, "writing %2i to %03x", i, i);
     writeEEPROM(i, i);
     delay(10);
+    endLog(logDEBUG, "done");
   }
+
   printContents();
 
-  Serial.println("end");
+  log(logINFO, "end");
+
   Serial.println("");
   Serial.end();
 
