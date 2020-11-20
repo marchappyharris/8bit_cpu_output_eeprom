@@ -18,6 +18,12 @@
 #define logWARNING "WARN"
 #define logERROR "EROR"
 
+#define EEPROM_control0   (0)
+#define EEPROM_control1   (1)
+#define EEPROM_control2   (2)
+#define EEPROM_decimal    (3)
+#define EEPROM_hex_octal  (4)
+
 #define ss_mid        (1 << 0)
 #define ss_top_left   (1 << 1)
 #define ss_low_left   (1 << 2)
@@ -53,6 +59,48 @@
 #define ss_signed   (1 << 10)
 #define ss_hex      (0)
 #define ss_oct      (1 << 10)
+
+#define ctrl_halt     (1L << 23)
+#define ctrl_addr_in  (1L << 22)
+#define ctrl_mem_in   (1L << 21)
+#define ctrl_mem_out  (1L << 20)
+#define ctrl_inst_out (1L << 19)
+#define ctrl_inst_in  (1L << 18)
+#define ctrl_a_in     (1L << 17)
+#define ctrl_a_out    (1L << 16)
+#define ctrl_sum_out  (1L << 15)
+#define ctrl_subtr    (1L << 14)
+#define ctrl_b_in     (1L << 13)
+#define ctrl_disp_in  (1L << 12)
+#define ctrl_cnt_en   (1L << 11)
+#define ctrl_cnt_out  (1L << 10)
+#define ctrl_jump     (1L <<  9)
+#define ctrl_spare_8  (1L <<  8)
+#define ctrl_spare_7  (1L <<  7)
+#define ctrl_spare_6  (1L <<  6)
+#define ctrl_spare_5  (1L <<  5)
+#define ctrl_spare_4  (1L <<  4)
+#define ctrl_spare_3  (1L <<  3)
+#define ctrl_spare_2  (1L <<  2)
+#define ctrl_spare_1  (1L <<  1)
+#define ctrl_spare_0  (1L <<  0)
+
+#define instr_NOP   0
+#define instr_LDA   1
+#define instr_ADD   2
+#define instr_SUB   3
+#define instr_STA   4
+#define instr_LDI   5
+#define instr_JMP   6
+#define instr_JZ    7
+#define instr_JNZ   8
+#define instr_JC    9
+#define instr_JNC  10
+#define instr_UN11 11
+#define instr_UN12 12
+#define instr_UN13 13
+#define instr_OUT  14
+#define instr_HLT  15
 
 int logLevel = 0;
 
@@ -157,31 +205,60 @@ void writeEEPROM(int address, byte data) {
   delay(10);  
 }
 
-void printContents() {
+void printContents(int bytesPerBlock, int blocksPerRow, int rowsPerChunk, bool binary, bool skipZeros) {
   int total = 2048;
-  int bytesPerBlock = 8;
-  int blocksPerRow = 4;
   int bytesPerRow = bytesPerBlock * blocksPerRow;
   int rows = total / bytesPerRow;
+  int chunks = rows / rowsPerChunk;
   
   byte data[bytesPerRow];
-  for (int line = 0; line < rows; line +=1) {
-    int base = line * bytesPerRow;
-    for (int offset = 0; offset < bytesPerRow; offset += 1) {
-      data[offset] = readEEPROM(base + offset);
-    }
+  bool skippedLast = false;
+  for (int chunk = 0; chunk < chunks; chunk +=1) {
+    bool nonZeroChunk = !skipZeros;  // if not skipping zeros, just pretend we have found a non-zero
+    for (int row = 0; row < rowsPerChunk; row +=1) {
+      bool nonZeroRow = !skipZeros;  // if not skipping zeros, just pretend we have found a non-zero
+      int base = (chunk * rowsPerChunk + row) * bytesPerRow;
+      for (int offset = 0; offset < bytesPerRow; offset += 1) {
+        byte dataByte= readEEPROM(base + offset);
+        data[offset] = dataByte;
+        nonZeroRow |= (dataByte != 0);
+        nonZeroChunk |= (dataByte != 0);
+      }
 
-    char buf[80];
-    sprintf(buf, "%04x:", base);
-    Serial.print(buf);
-    for (int block = 0; block < blocksPerRow; ++block) {
-      Serial.print("   ");
-      for (int byt = 0; byt < bytesPerBlock; ++byt) {
-        sprintf(buf, "%02x ", data[(block * bytesPerBlock) + byt]);            
-        Serial.print(buf);
+      if (!nonZeroRow) {
+        if (!skippedLast) {
+          Serial.println("  ...");
+          skippedLast = true;
+        }
+        continue;
+      }
+      else {
+        skippedLast = false;
+      }
+
+      char buf[80];
+      sprintf(buf, "%04x:", base);
+      Serial.print(buf);
+      for (int block = 0; block < blocksPerRow; ++block) {
+        Serial.print("   ");
+        for (int byt = 0; byt < bytesPerBlock; ++byt) {
+          byte value = data[(block * bytesPerBlock) + byt];
+          if (binary) {
+            sprintf(buf, "%i%i%i%i%i%i%i%i ", (value & 0x80) / 0x80, (value & 0x40) / 0x40, (value & 0x20) / 0x20, (value & 0x10) / 0x10,
+                                              (value & 0x08) / 0x08, (value & 0x04) / 0x04, (value & 0x02) / 0x02, (value & 0x01) / 0x01);
+          } else {
+            sprintf(buf, "%02x ", value);
+          }
+          Serial.print(buf);
+        }
+      }
+      if (nonZeroRow) {
+        Serial.println("");
       }
     }
-    Serial.println("");
+    if (nonZeroChunk) {
+      Serial.println("");
+    }
   }
 }
 
@@ -198,9 +275,34 @@ void setup() {
 
   log(logINFO, "start");
 
-  byte digits[] = {ss_0, ss_1, ss_2, ss_3, ss_4, ss_5, ss_6, ss_7, ss_8, ss_9, ss_A, ss_B, ss_C, ss_D, ss_E, ss_F};
+  int EEPROM_type = EEPROM_control2;
+  switch (EEPROM_type) {
+    case  EEPROM_control0:
+      writeControlLogic(0);
+      break;
+    case  EEPROM_control1:
+      writeControlLogic(1);
+      break;
+    case  EEPROM_control2:
+      writeControlLogic(2);
+      break;
+    case  EEPROM_decimal:
+      writeSevenSegmentDecoder(true);
+      break;
+    case  EEPROM_hex_octal:
+      writeSevenSegmentDecoder(false);
+      break;
+    default:
+      break;
+  }
 
-  boolean decimal = false;
+  log(logINFO, "end");
+  Serial.println("");
+  Serial.end();
+}
+
+void writeSevenSegmentDecoder(bool decimal) {
+  byte digits[] = {ss_0, ss_1, ss_2, ss_3, ss_4, ss_5, ss_6, ss_7, ss_8, ss_9, ss_A, ss_B, ss_C, ss_D, ss_E, ss_F};
 
   if (decimal) {
     startLog(logINFO, "Writing unsigned decimal");
@@ -239,13 +341,62 @@ void setup() {
     endLog(logINFO, "done");
   }
 
-  printContents();
+  printContents(8, 4, 32, false, false);
+}
 
-  log(logINFO, "end");
+#define INSTR_DEF(INSTR, op2, op3, op4, op5, op6, op7) \
+unsigned long array_instr ## INSTR [microcodeCount] = { fetch[0], fetch[1], op2, op3, op4, op5, op6, op7 }; \
+instructions[instr_ ## INSTR] = array_instr ## INSTR;
 
-  Serial.println("");
-  Serial.end();
+void writeControlLogic(int EEPROM_num) {
+  
+  int microcodeBits = 3;
+  int microcodeCount = 1 << microcodeBits;
+  int instructionCount = 16;
 
+  unsigned long fetch[] = { ctrl_addr_in | ctrl_cnt_out,
+                            ctrl_mem_out | ctrl_inst_in | ctrl_cnt_en };
+
+  unsigned long * instructions[instructionCount];
+  INSTR_DEF ( NOP , 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( LDA , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_a_in   , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( ADD , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_a_in | ctrl_sum_out              , 0, 0, 0 )
+  INSTR_DEF ( SUB , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_a_in | ctrl_sum_out | ctrl_subtr , 0, 0, 0 )
+  INSTR_DEF ( STA , ctrl_inst_out | ctrl_addr_in  , ctrl_a_out    | ctrl_mem_in , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( LDI , ctrl_inst_out | ctrl_a_in     , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( JMP , ctrl_inst_out | ctrl_jump     , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( JZ  , 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( JNZ , 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( JC  , 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( JNC , 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( UN11, 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( UN12, 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( UN13, 0                             , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( OUT , ctrl_a_out    | ctrl_disp_in  , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( HLT , ctrl_halt                     , 0                           , 0                                     , 0, 0, 0 )
+
+  startLog(logINFO, "Clearing chip");
+  for (int address = 0; address < 2048; ++address) {
+    writeEEPROM(address, 0);
+  }
+  endLog(logINFO, "done");
+
+  log(logINFO, "Writing control logic chip number %i",  EEPROM_num);
+  int instr = 0;
+  for (int instr = 0; instr < 16; ++instr) {
+    for (int codeStep = 0; codeStep < microcodeCount; ++codeStep) {
+      int addr = (instr << microcodeBits) | codeStep;
+      unsigned long val = instructions[instr][codeStep];
+      byte bVal = (byte)((val >> (EEPROM_num * 8)) & 0xff);
+      log(logINFO, "addr=%04x, bVal=%i", addr, bVal);
+      writeEEPROM(addr, bVal);
+    }
+  }
+  log(logINFO, "Done writing control logic chip number %i",  EEPROM_num);
+
+  log(logINFO, "Reading contents of EEPROM ...");
+  printContents(8, 1, 8, true, false);
+  log(logINFO, "done");
 }
 
 void loop() {
