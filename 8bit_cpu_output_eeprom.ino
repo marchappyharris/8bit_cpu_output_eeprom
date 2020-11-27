@@ -75,7 +75,7 @@
 #define ctrl_cnt_en   (1L << 11)
 #define ctrl_cnt_out  (1L << 10)
 #define ctrl_jump     (1L <<  9)
-#define ctrl_spare_8  (1L <<  8)
+#define ctrl_flag_in  (1L <<  8)
 #define ctrl_spare_7  (1L <<  7)
 #define ctrl_spare_6  (1L <<  6)
 #define ctrl_spare_5  (1L <<  5)
@@ -85,22 +85,28 @@
 #define ctrl_spare_1  (1L <<  1)
 #define ctrl_spare_0  (1L <<  0)
 
-#define instr_NOP   0
-#define instr_LDA   1
-#define instr_ADD   2
-#define instr_SUB   3
-#define instr_STA   4
-#define instr_LDI   5
-#define instr_JMP   6
-#define instr_JZ    7
-#define instr_JNZ   8
-#define instr_JC    9
-#define instr_JNC  10
-#define instr_UN11 11
-#define instr_UN12 12
-#define instr_UN13 13
-#define instr_OUT  14
-#define instr_HLT  15
+#define instr_CMP   0 // load memory into B, subtract, latch registers
+#define instr_CMI   1 // load direct into B, subtract, latch registers
+#define instr_LDA   2 // load memory into A
+#define instr_LDI   3 // load direct into A
+#define instr_ADD   4 // load memory into B, add, latch registers, store result in A
+#define instr_SUB   5 // load memory into B, subtract, latch registers, store result in A
+#define instr_STA   6 // store A into memory
+#define instr_JMP   7 // jump unconditional
+#define instr_JZ    8 // jump if zeroFlag == 1
+#define instr_JNZ   9 // jump if zeroFlag == 0
+#define instr_JC   10 // jump if carryFlag == 1
+#define instr_JNC  11 // jump if carryFlag == 0
+#define instr_JLT  12 // jump if zeroFlag == 0 && set carryFlag == 0
+#define instr_JGE  13 // jump if zeroFlag == 1 || set carryFlag == 1
+#define instr_OUT  14 // copy A into output
+#define instr_HLT  15 // halt
+
+#define flags_Z      (1L << 0) // zero
+#define flags_C      (1L << 1) // carry
+#define flags_UNSET  (0)       // ignore flags
+#define flags_ALLSET (0)       // ignore flags
+#define flags_ANYSET (0)       // ignore flags
 
 int logLevel = 0;
 
@@ -344,36 +350,56 @@ void writeSevenSegmentDecoder(bool decimal) {
   printContents(8, 4, 32, false, false);
 }
 
-#define INSTR_DEF(INSTR, op2, op3, op4, op5, op6, op7) \
-unsigned long array_instr ## INSTR [microcodeCount] = { fetch[0], fetch[1], op2, op3, op4, op5, op6, op7 }; \
+#define INSTR_DEF(INSTR, flags_set, flag_mask, op2, op3, op4, op5, op6, op7) \
+unsigned long array_instr ## INSTR [stepCount + 2] = { fetch[0], fetch[1], op2, op3, op4, op5, op6, op7, flags_set, flag_mask }; \
 instructions[instr_ ## INSTR] = array_instr ## INSTR;
 
 void writeControlLogic(int EEPROM_num) {
   
-  int microcodeBits = 3;
-  int microcodeCount = 1 << microcodeBits;
-  int instructionCount = 16;
+  int stepBits = 3;
+  int stepCount = 1 << stepBits;
+  int flagBits = 2;
+  int flagCount = 1 << flagBits;
+  int instructionBits = 4;
+  int instructionCount = 1 << instructionBits;
+  int fetchInstructions = 2;
+  unsigned long fetch[fetchInstructions] = { ctrl_addr_in | ctrl_cnt_out,
+                                             ctrl_mem_out | ctrl_inst_in | ctrl_cnt_en };
 
-  unsigned long fetch[] = { ctrl_addr_in | ctrl_cnt_out,
-                            ctrl_mem_out | ctrl_inst_in | ctrl_cnt_en };
+// #define instr_CMP   0 // load memory into B, subtract, latch registers
+// #define instr_CMI   1 // load direct into B, subtract, latch registers
+// #define instr_LDA   2 // load memory into A
+// #define instr_LDI   3 // load direct into A
+// #define instr_ADD   4 // load memory into B, add, latch registers, store result in A
+// #define instr_SUB   5 // load memory into B, subtract, latch registers, store result in A
+// #define instr_STA   6 // store A into memory
+// #define instr_JMP   7 // jump unconditional
+// #define instr_JZ    8 // jump if zeroFlag == 1
+// #define instr_JNZ   9 // jump if zeroFlag == 0
+// #define instr_JC   10 // jump if carryFlag == 1
+// #define instr_JNC  11 // jump if carryFlag == 0
+// #define instr_JLT  12 // jump if zeroFlag == 0 && set carryFlag == 0
+// #define instr_JGE  13 // jump if zeroFlag == 1 || set carryFlag == 1
+// #define instr_OUT  14 // copy A into output
+// #define instr_HLT  15 // halt
 
   unsigned long * instructions[instructionCount];
-  INSTR_DEF ( NOP , 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( LDA , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_a_in   , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( ADD , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_a_in | ctrl_sum_out              , 0, 0, 0 )
-  INSTR_DEF ( SUB , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_a_in | ctrl_sum_out | ctrl_subtr , 0, 0, 0 )
-  INSTR_DEF ( STA , ctrl_inst_out | ctrl_addr_in  , ctrl_a_out    | ctrl_mem_in , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( LDI , ctrl_inst_out | ctrl_a_in     , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( JMP , ctrl_inst_out | ctrl_jump     , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( JZ  , 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( JNZ , 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( JC  , 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( JNC , 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( UN11, 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( UN12, 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( UN13, 0                             , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( OUT , ctrl_a_out    | ctrl_disp_in  , 0                           , 0                                     , 0, 0, 0 )
-  INSTR_DEF ( HLT , ctrl_halt                     , 0                           , 0                                     , 0, 0, 0 )
+  INSTR_DEF ( CMP , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_flag_in | ctrl_subtr                            , 0, 0, 0 )
+  INSTR_DEF ( CMI , 0            , 0                 , ctrl_inst_out | ctrl_b_in     , ctrl_flag_in  | ctrl_subtr  , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( LDA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_a_in   , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( LDI , 0            , 0                 , ctrl_inst_out | ctrl_a_in     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( ADD , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in              , 0, 0, 0 )
+  INSTR_DEF ( SUB , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in | ctrl_subtr , 0, 0, 0 )
+  INSTR_DEF ( STA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_a_out    | ctrl_mem_in , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JMP , 0            , 0                 , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JZ  , flags_ALLSET , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JNZ , flags_UNSET  , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JC  , flags_ALLSET , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JNC , flags_UNSET  , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JLT , flags_UNSET  , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( JGE , flags_ANYSET , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( OUT , flags_ANYSET , 0                 , ctrl_a_out    | ctrl_disp_in  , 0                           , 0                                                    , 0, 0, 0 )
+  INSTR_DEF ( HLT , flags_ANYSET , 0                 , ctrl_halt                     , 0                           , 0                                                    , 0, 0, 0 )
 
   startLog(logINFO, "Clearing chip");
   for (int address = 0; address < 2048; ++address) {
@@ -384,12 +410,31 @@ void writeControlLogic(int EEPROM_num) {
   log(logINFO, "Writing control logic chip number %i",  EEPROM_num);
   int instr = 0;
   for (int instr = 0; instr < 16; ++instr) {
-    for (int codeStep = 0; codeStep < microcodeCount; ++codeStep) {
-      int addr = (instr << microcodeBits) | codeStep;
+    for (int codeStep = 0; codeStep < stepCount; ++codeStep) {
+      int instrAndStep = (instr << stepBits) | codeStep;
       unsigned long val = instructions[instr][codeStep];
       byte bVal = (byte)((val >> (EEPROM_num * 8)) & 0xff);
-      log(logINFO, "addr=%04x, bVal=%i", addr, bVal);
-      writeEEPROM(addr, bVal);
+      for (long flag = 0; flag < flagCount; ++flag) {
+        int address = instrAndStep | flag << (instructionBits + stepBits);
+        long flags_set = instructions[instr][stepCount + 0];
+        long mask = instructions[instr][stepCount + 1];
+        long flagMatch = flag && mask;
+        bool enabled;
+        if (codeStep < fetchInstructions) {
+          enabled = true;
+        }
+        else if (flags_set == flags_UNSET) {
+          enabled = ( flagMatch == 0);
+        }
+        else if (flags_set == flags_ANYSET) {
+          enabled = ( flagMatch != 0);
+        }
+        else { // flags_set == flags_ALLSET
+          enabled = ( flagMatch == mask);
+        }
+        log(logINFO, "instrAndStep=%04x, address=%04x, enabled=%i, bVal=%i", instrAndStep, address, enabled, bVal);
+        writeEEPROM(instrAndStep, enabled ? bVal : 0);
+      }
     }
   }
   log(logINFO, "Done writing control logic chip number %i",  EEPROM_num);
