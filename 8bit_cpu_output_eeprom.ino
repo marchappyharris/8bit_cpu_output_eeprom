@@ -281,7 +281,7 @@ void setup() {
 
   log(logINFO, "start");
 
-  int EEPROM_type = EEPROM_control2;
+  int EEPROM_type = EEPROM_control1;
   switch (EEPROM_type) {
     case  EEPROM_control0:
       writeControlLogic(0);
@@ -350,11 +350,39 @@ void writeSevenSegmentDecoder(bool decimal) {
   printContents(8, 4, 32, false, false);
 }
 
-#define INSTR_DEF(INSTR, flags_set, flag_mask, op2, op3, op4, op5, op6, op7) \
-unsigned long array_instr ## INSTR [stepCount + 2] = { fetch[0], fetch[1], op2, op3, op4, op5, op6, op7, flags_set, flag_mask }; \
-instructions[instr_ ## INSTR] = array_instr ## INSTR;
-
 void writeControlLogic(int EEPROM_num) {
+  
+  startLog(logINFO, "Clearing chip");
+  for (int address = 0; address < 2048; ++address) {
+    writeEEPROM(address, 0);
+  }
+  endLog(logINFO, "done");
+
+  log(logINFO, "Writing control logic chip number %i",  EEPROM_num);
+  writeInstr(EEPROM_num, instr_CMP , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_flag_in | ctrl_subtr                            , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_CMI , 0            , 0                 , ctrl_inst_out | ctrl_b_in     , ctrl_flag_in  | ctrl_subtr  , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_LDA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_a_in   , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_LDI , 0            , 0                 , ctrl_inst_out | ctrl_a_in     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_ADD , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in              , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_SUB , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in | ctrl_subtr , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_STA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_a_out    | ctrl_mem_in , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JMP , 0            , 0                 , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JZ  , flags_ALLSET , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JNZ , flags_UNSET  , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JC  , flags_ALLSET , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JNC , flags_UNSET  , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JLT , flags_UNSET  , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_JGE , flags_ANYSET , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_OUT , flags_ANYSET , 0                 , ctrl_a_out    | ctrl_disp_in  , 0                           , 0                                                    , 0, 0, 0 );
+  writeInstr(EEPROM_num, instr_HLT , flags_ANYSET , 0                 , ctrl_halt                     , 0                           , 0                                                    , 0, 0, 0 );
+  log(logINFO, "Done writing control logic chip number %i",  EEPROM_num);
+
+  log(logINFO, "Reading contents of EEPROM ...");
+  printContents(8, 1, 8, true, false);
+  log(logINFO, "done");
+}
+
+void writeInstr(int EEPROM_num, int instruction, int flags_set, int flag_mask, long op2, long op3, long op4, long op5, long op6, long op7) {
   
   int stepBits = 3;
   int stepCount = 1 << stepBits;
@@ -366,82 +394,32 @@ void writeControlLogic(int EEPROM_num) {
   unsigned long fetch[fetchInstructions] = { ctrl_addr_in | ctrl_cnt_out,
                                              ctrl_mem_out | ctrl_inst_in | ctrl_cnt_en };
 
-// #define instr_CMP   0 // load memory into B, subtract, latch registers
-// #define instr_CMI   1 // load direct into B, subtract, latch registers
-// #define instr_LDA   2 // load memory into A
-// #define instr_LDI   3 // load direct into A
-// #define instr_ADD   4 // load memory into B, add, latch registers, store result in A
-// #define instr_SUB   5 // load memory into B, subtract, latch registers, store result in A
-// #define instr_STA   6 // store A into memory
-// #define instr_JMP   7 // jump unconditional
-// #define instr_JZ    8 // jump if zeroFlag == 1
-// #define instr_JNZ   9 // jump if zeroFlag == 0
-// #define instr_JC   10 // jump if carryFlag == 1
-// #define instr_JNC  11 // jump if carryFlag == 0
-// #define instr_JLT  12 // jump if zeroFlag == 0 && set carryFlag == 0
-// #define instr_JGE  13 // jump if zeroFlag == 1 || set carryFlag == 1
-// #define instr_OUT  14 // copy A into output
-// #define instr_HLT  15 // halt
+  unsigned long steps[stepCount] = { fetch[0], fetch[1], op2, op3, op4, op5, op6, op7 };
 
-  unsigned long * instructions[instructionCount];
-  INSTR_DEF ( CMP , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_flag_in | ctrl_subtr                            , 0, 0, 0 )
-  INSTR_DEF ( CMI , 0            , 0                 , ctrl_inst_out | ctrl_b_in     , ctrl_flag_in  | ctrl_subtr  , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( LDA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_a_in   , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( LDI , 0            , 0                 , ctrl_inst_out | ctrl_a_in     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( ADD , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in              , 0, 0, 0 )
-  INSTR_DEF ( SUB , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_mem_out  | ctrl_b_in   , ctrl_sum_out | ctrl_a_in | ctrl_flag_in | ctrl_subtr , 0, 0, 0 )
-  INSTR_DEF ( STA , 0            , 0                 , ctrl_inst_out | ctrl_addr_in  , ctrl_a_out    | ctrl_mem_in , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JMP , 0            , 0                 , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JZ  , flags_ALLSET , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JNZ , flags_UNSET  , flags_Z           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JC  , flags_ALLSET , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JNC , flags_UNSET  , flags_C           , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JLT , flags_UNSET  , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( JGE , flags_ANYSET , flags_Z | flags_C , ctrl_inst_out | ctrl_jump     , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( OUT , flags_ANYSET , 0                 , ctrl_a_out    | ctrl_disp_in  , 0                           , 0                                                    , 0, 0, 0 )
-  INSTR_DEF ( HLT , flags_ANYSET , 0                 , ctrl_halt                     , 0                           , 0                                                    , 0, 0, 0 )
-
-  startLog(logINFO, "Clearing chip");
-  for (int address = 0; address < 2048; ++address) {
-    writeEEPROM(address, 0);
-  }
-  endLog(logINFO, "done");
-
-  log(logINFO, "Writing control logic chip number %i",  EEPROM_num);
-  int instr = 0;
-  for (int instr = 0; instr < 16; ++instr) {
-    for (int codeStep = 0; codeStep < stepCount; ++codeStep) {
-      int instrAndStep = (instr << stepBits) | codeStep;
-      unsigned long val = instructions[instr][codeStep];
-      byte bVal = (byte)((val >> (EEPROM_num * 8)) & 0xff);
-      for (long flag = 0; flag < flagCount; ++flag) {
-        int address = instrAndStep | flag << (instructionBits + stepBits);
-        long flags_set = instructions[instr][stepCount + 0];
-        long mask = instructions[instr][stepCount + 1];
-        long flagMatch = flag && mask;
-        bool enabled;
-        if (codeStep < fetchInstructions) {
-          enabled = true;
-        }
-        else if (flags_set == flags_UNSET) {
-          enabled = ( flagMatch == 0);
-        }
-        else if (flags_set == flags_ANYSET) {
-          enabled = ( flagMatch != 0);
-        }
-        else { // flags_set == flags_ALLSET
-          enabled = ( flagMatch == mask);
-        }
-        log(logINFO, "instrAndStep=%04x, address=%04x, enabled=%i, bVal=%i", instrAndStep, address, enabled, bVal);
-        writeEEPROM(instrAndStep, enabled ? bVal : 0);
+  for (int codeStep = 0; codeStep < stepCount; ++codeStep) {
+    int instrAndStep = (instruction << stepBits) | codeStep;
+    unsigned long val = steps[codeStep];
+    byte bVal = (byte)((val >> (EEPROM_num * 8)) & 0xff);
+    for (long flag = 0; flag < flagCount; ++flag) {
+      int address = instrAndStep | flag << (instructionBits + stepBits);
+      long flagMatch = flag && flag_mask;
+      bool enabled;
+      if (codeStep < fetchInstructions) {
+        enabled = true;
       }
+      else if (flags_set == flags_UNSET) {
+        enabled = ( flagMatch == 0);
+      }
+      else if (flags_set == flags_ANYSET) {
+        enabled = ( flagMatch != 0);
+      }
+      else { // flags_set == flags_ALLSET
+        enabled = ( flagMatch == flag_mask);
+      }
+      log(logINFO, "instrAndStep=%04x, address=%04x, enabled=%i, bVal=%i", instrAndStep, address, enabled, bVal);
+      writeEEPROM(address, enabled ? bVal : 0);
     }
   }
-  log(logINFO, "Done writing control logic chip number %i",  EEPROM_num);
-
-  log(logINFO, "Reading contents of EEPROM ...");
-  printContents(8, 1, 8, true, false);
-  log(logINFO, "done");
 }
 
 void loop() {
