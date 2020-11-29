@@ -1,5 +1,519 @@
-
 INFO: start
+INFO: Clearing chip ... done
+INFO: Writing control logic chip number 1
+INFO: instrAndStep=0000, address=0000, enabled=1, bVal=4
+INFO: instrAndStep=0000, address=0080, enabled=1, bVal=4
+INFO: instrAndStep=0000, address=0100, enabled=1, bVal=4
+INFO: instrAndStep=0000, address=0180, enabled=1, bVal=4
+INFO: instrAndStep=0001, address=0001, enabled=1, bVal=8
+INFO: instrAndStep=0001, address=0081, enabled=1, bVal=8
+INFO: instrAndStep=0001, address=0101, enabled=1, bVal=8
+INFO: instrAndStep=0001, address=0181, enabled=1, bVal=8
+INFO: instrAndStep=0002, address=0002, enabled=1, bVal=0
+INFO: instrAndStep=0002, address=0082, enabled=1, bVal=0
+INFO: instrAndStep=0002, address=0102, enabled=1, bVal=0
+INFO: instrAndStep=0002, address=0182, enabled=1, bVal=0
+INFO: instrAndStep=0003, address=0003, enabled=1, bVal=32
+INFO: instrAndStep=0003, address=0083, enabled=1, bVal=32
+INFO: instrAndStep=0003, address=0103, enabled=1, bVal=32
+INFO: instrAndStep=0003, address=0183, enabled=1, bVal=32
+INFO: instrAndStep=0004, address=0004, enabled=1, bVal=65
+INFO: instrAndStep=0004, address=0084, enabled=1, bVal=65
+INFO: instrAndStep=0004, address=0104, enabled=1, bVal=65
+INFO: instrAndStep=0004, address=0184, enabled=1, bVal=65
+INFO: instrAndStep=0005, address=0005, enabled=1, bVal=0
+INFO: instrAndStep=0005, address=0085, enabled=1, bVal=0
+INFO: instrAndStep=0005, address=0105, enabled=1, bVal=0
+INFO: instrAndStep=0005, address=0185, enabled=1, bVal=0
+INFO: instrAndStep=0006, address=0006, enabled=1, bVal=0
+INFO: instrAndStep=0006, address=0086, enabled=1, bVal=0
+INFO: instrAndStep=0006, address=0106, enabled=1, bVal=0
+INFO: instrAndStep=0006, address=0186, enabled=1, bVal=0
+INFO: instrAndStep=0007, address=0007, enabled=1, bVal=0
+INFO: instrAndStep=0007, address=0087, enabled=1, bVal=0
+INFO: instrAndStep=0007, address=0107, enabled=1, bVal=0
+INFO: instrAndStep=0007, address=0187, enabled=1, bVal=0
+INFO: instrAndStep=0008, address=0008, enabled=1, bVal=4
+INFO: instrAndStep=0008, address=0088, enabled=1, bVal=4
+INFO: instrAndStep=0008, address=0108, enabled=1, bVal=4
+INFO: instrAndStep=0008, address=0188, enabled=1, bVal=4
+INFO: instrAndStep=0009, address=0009, enabled=1, bVal=8
+INFO: instrAndStep=0009, address=0089, enabled=1, bVal=8
+INFO: instrAndStep=0009, address=0109, enabled=1, bVal=8
+INFO: instrAndStep=0009, address=0189, enabled=1, bVal=8
+INFO: instrAndStep=000a, address=000a, enabled=1, bVal=32
+INFO: instrAndStep=000a, address=008a, enabled=1, bVal=32
+INFO: instrAndStep=000a, address=010a, enabled=1, bVal=32
+INFO: instrAndStep=000a, address=018a, enabled=1, bVal=32
+INFO: instrAndStep=000b, address=000b, enabled=1, bVal=65
+INFO: instrAndStep=000b, address=008b, enabled=1, bVal=65
+INFO: instrAndStep=000b, address=010b, enabled=1, bVal=65
+INFO: instrAndStep=000b, address=018b, enabled=1, bVal=65
+INFO: instrAndStep=000c, address=000c, enabled=1, bVal=0
+INFO: instrAndStep=000c, address=008c, enabled=1, bVal=0
+INFO: instrAndStep=000c, address=010c, enabled=1, bVal=0
+INFO: instrAndStep=000c, address=018c, enabled=1, bVal=0
+INFO: instrAndStep=000d, address=000d, enabled=1, bVal=0
+INFO: instrAndStep=000d, address=008d, enabled=1, bVal=0
+INFO: instrAndStep=000d, address=010d, enabled=1, bVal=0
+INFO: instrAndStep=000d, address=018d, enabled=1, bVal=0
+INFO: instrAndStep=000e, address=000e, enabled=1, bVal=0
+INFO: instrAndStep=000e, address=008e, enabled=1, bVal=0
+INFO: instrAndStep=000e, address=010e, enabled=1, bVal=0
+INFO: instrAndStep=000e, address=018e, enabled=1, bVal=0
+INFO: instrAndStep=000f, address=000f, enabled=1, bVal=0
+INFO: instrAndStep=000f, address=008f, enabled=1, bVal=0
+INFO: instrAndStep=000f, address=010f, enabled=1, bVal=0
+INFO: instrAndStep=000f, address=018f, enabled=1, bVal=0
+INFO: instrAndStep=0010, address=0010, enabled=1, bVal=4
+INFO: instrAndStep=0010, address=0090, enabled=1, bVal=4
+INFO: instrAndStep=0010, address=0110, enabled=1, bVal=4
+INFO: instrAndStep=0010, address=0190, enabled=1, bVal=4
+INFO: instrAndStep=0011, address=0011, enabled=1, bVal=8
+INFO: instrAndStep=0011, address=0091, enabled=1, bVal=8
+INFO: instrAndStep=0011, address=0111, enabled=1, bVal=8
+INFO: instrAndStep=0011, address=0191, enabled=1, bVal=8
+INFO: instrAndStep=0012, address=0012, enabled=1, bVal=0
+INFO: instrAndStep=0012, address=0092, enabled=1, bVal=0
+INFO: instrAndStep=0012, address=0112, enabled=1, bVal=0
+INFO: instrAndStep=0012, address=0192, enabled=1, bVal=0
+INFO: instrAndStep=0013, address=0013, enabled=1, bVal=0
+INFO: instrAndStep=0013, address=0093, enabled=1, bVal=0
+INFO: instrAndStep=0013, address=0113, enabled=1, bVal=0
+INFO: instrAndStep=0013, address=0193, enabled=1, bVal=0
+INFO: instrAndStep=0014, address=0014, enabled=1, bVal=0
+INFO: instrAndStep=0014, address=0094, enabled=1, bVal=0
+INFO: instrAndStep=0014, address=0114, enabled=1, bVal=0
+INFO: instrAndStep=0014, address=0194, enabled=1, bVal=0
+INFO: instrAndStep=0015, address=0015, enabled=1, bVal=0
+INFO: instrAndStep=0015, address=0095, enabled=1, bVal=0
+INFO: instrAndStep=0015, address=0115, enabled=1, bVal=0
+INFO: instrAndStep=0015, address=0195, enabled=1, bVal=0
+INFO: instrAndStep=0016, address=0016, enabled=1, bVal=0
+INFO: instrAndStep=0016, address=0096, enabled=1, bVal=0
+INFO: instrAndStep=0016, address=0116, enabled=1, bVal=0
+INFO: instrAndStep=0016, address=0196, enabled=1, bVal=0
+INFO: instrAndStep=0017, address=0017, enabled=1, bVal=0
+INFO: instrAndStep=0017, address=0097, enabled=1, bVal=0
+INFO: instrAndStep=0017, address=0117, enabled=1, bVal=0
+INFO: instrAndStep=0017, address=0197, enabled=1, bVal=0
+INFO: instrAndStep=0018, address=0018, enabled=1, bVal=4
+INFO: instrAndStep=0018, address=0098, enabled=1, bVal=4
+INFO: instrAndStep=0018, address=0118, enabled=1, bVal=4
+INFO: instrAndStep=0018, address=0198, enabled=1, bVal=4
+INFO: instrAndStep=0019, address=0019, enabled=1, bVal=8
+INFO: instrAndStep=0019, address=0099, enabled=1, bVal=8
+INFO: instrAndStep=0019, address=0119, enabled=1, bVal=8
+INFO: instrAndStep=0019, address=0199, enabled=1, bVal=8
+INFO: instrAndStep=001a, address=001a, enabled=1, bVal=0
+INFO: instrAndStep=001a, address=009a, enabled=1, bVal=0
+INFO: instrAndStep=001a, address=011a, enabled=1, bVal=0
+INFO: instrAndStep=001a, address=019a, enabled=1, bVal=0
+INFO: instrAndStep=001b, address=001b, enabled=1, bVal=0
+INFO: instrAndStep=001b, address=009b, enabled=1, bVal=0
+INFO: instrAndStep=001b, address=011b, enabled=1, bVal=0
+INFO: instrAndStep=001b, address=019b, enabled=1, bVal=0
+INFO: instrAndStep=001c, address=001c, enabled=1, bVal=0
+INFO: instrAndStep=001c, address=009c, enabled=1, bVal=0
+INFO: instrAndStep=001c, address=011c, enabled=1, bVal=0
+INFO: instrAndStep=001c, address=019c, enabled=1, bVal=0
+INFO: instrAndStep=001d, address=001d, enabled=1, bVal=0
+INFO: instrAndStep=001d, address=009d, enabled=1, bVal=0
+INFO: instrAndStep=001d, address=011d, enabled=1, bVal=0
+INFO: instrAndStep=001d, address=019d, enabled=1, bVal=0
+INFO: instrAndStep=001e, address=001e, enabled=1, bVal=0
+INFO: instrAndStep=001e, address=009e, enabled=1, bVal=0
+INFO: instrAndStep=001e, address=011e, enabled=1, bVal=0
+INFO: instrAndStep=001e, address=019e, enabled=1, bVal=0
+INFO: instrAndStep=001f, address=001f, enabled=1, bVal=0
+INFO: instrAndStep=001f, address=009f, enabled=1, bVal=0
+INFO: instrAndStep=001f, address=011f, enabled=1, bVal=0
+INFO: instrAndStep=001f, address=019f, enabled=1, bVal=0
+INFO: instrAndStep=0020, address=0020, enabled=1, bVal=4
+INFO: instrAndStep=0020, address=00a0, enabled=1, bVal=4
+INFO: instrAndStep=0020, address=0120, enabled=1, bVal=4
+INFO: instrAndStep=0020, address=01a0, enabled=1, bVal=4
+INFO: instrAndStep=0021, address=0021, enabled=1, bVal=8
+INFO: instrAndStep=0021, address=00a1, enabled=1, bVal=8
+INFO: instrAndStep=0021, address=0121, enabled=1, bVal=8
+INFO: instrAndStep=0021, address=01a1, enabled=1, bVal=8
+INFO: instrAndStep=0022, address=0022, enabled=1, bVal=0
+INFO: instrAndStep=0022, address=00a2, enabled=1, bVal=0
+INFO: instrAndStep=0022, address=0122, enabled=1, bVal=0
+INFO: instrAndStep=0022, address=01a2, enabled=1, bVal=0
+INFO: instrAndStep=0023, address=0023, enabled=1, bVal=32
+INFO: instrAndStep=0023, address=00a3, enabled=1, bVal=32
+INFO: instrAndStep=0023, address=0123, enabled=1, bVal=32
+INFO: instrAndStep=0023, address=01a3, enabled=1, bVal=32
+INFO: instrAndStep=0024, address=0024, enabled=1, bVal=129
+INFO: instrAndStep=0024, address=00a4, enabled=1, bVal=129
+INFO: instrAndStep=0024, address=0124, enabled=1, bVal=129
+INFO: instrAndStep=0024, address=01a4, enabled=1, bVal=129
+INFO: instrAndStep=0025, address=0025, enabled=1, bVal=0
+INFO: instrAndStep=0025, address=00a5, enabled=1, bVal=0
+INFO: instrAndStep=0025, address=0125, enabled=1, bVal=0
+INFO: instrAndStep=0025, address=01a5, enabled=1, bVal=0
+INFO: instrAndStep=0026, address=0026, enabled=1, bVal=0
+INFO: instrAndStep=0026, address=00a6, enabled=1, bVal=0
+INFO: instrAndStep=0026, address=0126, enabled=1, bVal=0
+INFO: instrAndStep=0026, address=01a6, enabled=1, bVal=0
+INFO: instrAndStep=0027, address=0027, enabled=1, bVal=0
+INFO: instrAndStep=0027, address=00a7, enabled=1, bVal=0
+INFO: instrAndStep=0027, address=0127, enabled=1, bVal=0
+INFO: instrAndStep=0027, address=01a7, enabled=1, bVal=0
+INFO: instrAndStep=0028, address=0028, enabled=1, bVal=4
+INFO: instrAndStep=0028, address=00a8, enabled=1, bVal=4
+INFO: instrAndStep=0028, address=0128, enabled=1, bVal=4
+INFO: instrAndStep=0028, address=01a8, enabled=1, bVal=4
+INFO: instrAndStep=0029, address=0029, enabled=1, bVal=8
+INFO: instrAndStep=0029, address=00a9, enabled=1, bVal=8
+INFO: instrAndStep=0029, address=0129, enabled=1, bVal=8
+INFO: instrAndStep=0029, address=01a9, enabled=1, bVal=8
+INFO: instrAndStep=002a, address=002a, enabled=1, bVal=0
+INFO: instrAndStep=002a, address=00aa, enabled=1, bVal=0
+INFO: instrAndStep=002a, address=012a, enabled=1, bVal=0
+INFO: instrAndStep=002a, address=01aa, enabled=1, bVal=0
+INFO: instrAndStep=002b, address=002b, enabled=1, bVal=32
+INFO: instrAndStep=002b, address=00ab, enabled=1, bVal=32
+INFO: instrAndStep=002b, address=012b, enabled=1, bVal=32
+INFO: instrAndStep=002b, address=01ab, enabled=1, bVal=32
+INFO: instrAndStep=002c, address=002c, enabled=1, bVal=193
+INFO: instrAndStep=002c, address=00ac, enabled=1, bVal=193
+INFO: instrAndStep=002c, address=012c, enabled=1, bVal=193
+INFO: instrAndStep=002c, address=01ac, enabled=1, bVal=193
+INFO: instrAndStep=002d, address=002d, enabled=1, bVal=0
+INFO: instrAndStep=002d, address=00ad, enabled=1, bVal=0
+INFO: instrAndStep=002d, address=012d, enabled=1, bVal=0
+INFO: instrAndStep=002d, address=01ad, enabled=1, bVal=0
+INFO: instrAndStep=002e, address=002e, enabled=1, bVal=0
+INFO: instrAndStep=002e, address=00ae, enabled=1, bVal=0
+INFO: instrAndStep=002e, address=012e, enabled=1, bVal=0
+INFO: instrAndStep=002e, address=01ae, enabled=1, bVal=0
+INFO: instrAndStep=002f, address=002f, enabled=1, bVal=0
+INFO: instrAndStep=002f, address=00af, enabled=1, bVal=0
+INFO: instrAndStep=002f, address=012f, enabled=1, bVal=0
+INFO: instrAndStep=002f, address=01af, enabled=1, bVal=0
+INFO: instrAndStep=0030, address=0030, enabled=1, bVal=4
+INFO: instrAndStep=0030, address=00b0, enabled=1, bVal=4
+INFO: instrAndStep=0030, address=0130, enabled=1, bVal=4
+INFO: instrAndStep=0030, address=01b0, enabled=1, bVal=4
+INFO: instrAndStep=0031, address=0031, enabled=1, bVal=8
+INFO: instrAndStep=0031, address=00b1, enabled=1, bVal=8
+INFO: instrAndStep=0031, address=0131, enabled=1, bVal=8
+INFO: instrAndStep=0031, address=01b1, enabled=1, bVal=8
+INFO: instrAndStep=0032, address=0032, enabled=1, bVal=0
+INFO: instrAndStep=0032, address=00b2, enabled=1, bVal=0
+INFO: instrAndStep=0032, address=0132, enabled=1, bVal=0
+INFO: instrAndStep=0032, address=01b2, enabled=1, bVal=0
+INFO: instrAndStep=0033, address=0033, enabled=1, bVal=0
+INFO: instrAndStep=0033, address=00b3, enabled=1, bVal=0
+INFO: instrAndStep=0033, address=0133, enabled=1, bVal=0
+INFO: instrAndStep=0033, address=01b3, enabled=1, bVal=0
+INFO: instrAndStep=0034, address=0034, enabled=1, bVal=0
+INFO: instrAndStep=0034, address=00b4, enabled=1, bVal=0
+INFO: instrAndStep=0034, address=0134, enabled=1, bVal=0
+INFO: instrAndStep=0034, address=01b4, enabled=1, bVal=0
+INFO: instrAndStep=0035, address=0035, enabled=1, bVal=0
+INFO: instrAndStep=0035, address=00b5, enabled=1, bVal=0
+INFO: instrAndStep=0035, address=0135, enabled=1, bVal=0
+INFO: instrAndStep=0035, address=01b5, enabled=1, bVal=0
+INFO: instrAndStep=0036, address=0036, enabled=1, bVal=0
+INFO: instrAndStep=0036, address=00b6, enabled=1, bVal=0
+INFO: instrAndStep=0036, address=0136, enabled=1, bVal=0
+INFO: instrAndStep=0036, address=01b6, enabled=1, bVal=0
+INFO: instrAndStep=0037, address=0037, enabled=1, bVal=0
+INFO: instrAndStep=0037, address=00b7, enabled=1, bVal=0
+INFO: instrAndStep=0037, address=0137, enabled=1, bVal=0
+INFO: instrAndStep=0037, address=01b7, enabled=1, bVal=0
+INFO: instrAndStep=0038, address=0038, enabled=1, bVal=4
+INFO: instrAndStep=0038, address=00b8, enabled=1, bVal=4
+INFO: instrAndStep=0038, address=0138, enabled=1, bVal=4
+INFO: instrAndStep=0038, address=01b8, enabled=1, bVal=4
+INFO: instrAndStep=0039, address=0039, enabled=1, bVal=8
+INFO: instrAndStep=0039, address=00b9, enabled=1, bVal=8
+INFO: instrAndStep=0039, address=0139, enabled=1, bVal=8
+INFO: instrAndStep=0039, address=01b9, enabled=1, bVal=8
+INFO: instrAndStep=003a, address=003a, enabled=1, bVal=2
+INFO: instrAndStep=003a, address=00ba, enabled=1, bVal=2
+INFO: instrAndStep=003a, address=013a, enabled=1, bVal=2
+INFO: instrAndStep=003a, address=01ba, enabled=1, bVal=2
+INFO: instrAndStep=003b, address=003b, enabled=1, bVal=0
+INFO: instrAndStep=003b, address=00bb, enabled=1, bVal=0
+INFO: instrAndStep=003b, address=013b, enabled=1, bVal=0
+INFO: instrAndStep=003b, address=01bb, enabled=1, bVal=0
+INFO: instrAndStep=003c, address=003c, enabled=1, bVal=0
+INFO: instrAndStep=003c, address=00bc, enabled=1, bVal=0
+INFO: instrAndStep=003c, address=013c, enabled=1, bVal=0
+INFO: instrAndStep=003c, address=01bc, enabled=1, bVal=0
+INFO: instrAndStep=003d, address=003d, enabled=1, bVal=0
+INFO: instrAndStep=003d, address=00bd, enabled=1, bVal=0
+INFO: instrAndStep=003d, address=013d, enabled=1, bVal=0
+INFO: instrAndStep=003d, address=01bd, enabled=1, bVal=0
+INFO: instrAndStep=003e, address=003e, enabled=1, bVal=0
+INFO: instrAndStep=003e, address=00be, enabled=1, bVal=0
+INFO: instrAndStep=003e, address=013e, enabled=1, bVal=0
+INFO: instrAndStep=003e, address=01be, enabled=1, bVal=0
+INFO: instrAndStep=003f, address=003f, enabled=1, bVal=0
+INFO: instrAndStep=003f, address=00bf, enabled=1, bVal=0
+INFO: instrAndStep=003f, address=013f, enabled=1, bVal=0
+INFO: instrAndStep=003f, address=01bf, enabled=1, bVal=0
+INFO: instrAndStep=0040, address=0040, enabled=1, bVal=4
+INFO: instrAndStep=0040, address=00c0, enabled=1, bVal=4
+INFO: instrAndStep=0040, address=0140, enabled=1, bVal=4
+INFO: instrAndStep=0040, address=01c0, enabled=1, bVal=4
+INFO: instrAndStep=0041, address=0041, enabled=1, bVal=8
+INFO: instrAndStep=0041, address=00c1, enabled=1, bVal=8
+INFO: instrAndStep=0041, address=0141, enabled=1, bVal=8
+INFO: instrAndStep=0041, address=01c1, enabled=1, bVal=8
+INFO: instrAndStep=0042, address=0042, enabled=0, bVal=2
+INFO: instrAndStep=0042, address=00c2, enabled=1, bVal=2
+INFO: instrAndStep=0042, address=0142, enabled=1, bVal=2
+INFO: instrAndStep=0042, address=01c2, enabled=1, bVal=2
+INFO: instrAndStep=0043, address=0043, enabled=0, bVal=0
+INFO: instrAndStep=0043, address=00c3, enabled=1, bVal=0
+INFO: instrAndStep=0043, address=0143, enabled=1, bVal=0
+INFO: instrAndStep=0043, address=01c3, enabled=1, bVal=0
+INFO: instrAndStep=0044, address=0044, enabled=0, bVal=0
+INFO: instrAndStep=0044, address=00c4, enabled=1, bVal=0
+INFO: instrAndStep=0044, address=0144, enabled=1, bVal=0
+INFO: instrAndStep=0044, address=01c4, enabled=1, bVal=0
+INFO: instrAndStep=0045, address=0045, enabled=0, bVal=0
+INFO: instrAndStep=0045, address=00c5, enabled=1, bVal=0
+INFO: instrAndStep=0045, address=0145, enabled=1, bVal=0
+INFO: instrAndStep=0045, address=01c5, enabled=1, bVal=0
+INFO: instrAndStep=0046, address=0046, enabled=0, bVal=0
+INFO: instrAndStep=0046, address=00c6, enabled=1, bVal=0
+INFO: instrAndStep=0046, address=0146, enabled=1, bVal=0
+INFO: instrAndStep=0046, address=01c6, enabled=1, bVal=0
+INFO: instrAndStep=0047, address=0047, enabled=0, bVal=0
+INFO: instrAndStep=0047, address=00c7, enabled=1, bVal=0
+INFO: instrAndStep=0047, address=0147, enabled=1, bVal=0
+INFO: instrAndStep=0047, address=01c7, enabled=1, bVal=0
+INFO: instrAndStep=0048, address=0048, enabled=1, bVal=4
+INFO: instrAndStep=0048, address=00c8, enabled=1, bVal=4
+INFO: instrAndStep=0048, address=0148, enabled=1, bVal=4
+INFO: instrAndStep=0048, address=01c8, enabled=1, bVal=4
+INFO: instrAndStep=0049, address=0049, enabled=1, bVal=8
+INFO: instrAndStep=0049, address=00c9, enabled=1, bVal=8
+INFO: instrAndStep=0049, address=0149, enabled=1, bVal=8
+INFO: instrAndStep=0049, address=01c9, enabled=1, bVal=8
+INFO: instrAndStep=004a, address=004a, enabled=1, bVal=2
+INFO: instrAndStep=004a, address=00ca, enabled=0, bVal=2
+INFO: instrAndStep=004a, address=014a, enabled=0, bVal=2
+INFO: instrAndStep=004a, address=01ca, enabled=0, bVal=2
+INFO: instrAndStep=004b, address=004b, enabled=1, bVal=0
+INFO: instrAndStep=004b, address=00cb, enabled=0, bVal=0
+INFO: instrAndStep=004b, address=014b, enabled=0, bVal=0
+INFO: instrAndStep=004b, address=01cb, enabled=0, bVal=0
+INFO: instrAndStep=004c, address=004c, enabled=1, bVal=0
+INFO: instrAndStep=004c, address=00cc, enabled=0, bVal=0
+INFO: instrAndStep=004c, address=014c, enabled=0, bVal=0
+INFO: instrAndStep=004c, address=01cc, enabled=0, bVal=0
+INFO: instrAndStep=004d, address=004d, enabled=1, bVal=0
+INFO: instrAndStep=004d, address=00cd, enabled=0, bVal=0
+INFO: instrAndStep=004d, address=014d, enabled=0, bVal=0
+INFO: instrAndStep=004d, address=01cd, enabled=0, bVal=0
+INFO: instrAndStep=004e, address=004e, enabled=1, bVal=0
+INFO: instrAndStep=004e, address=00ce, enabled=0, bVal=0
+INFO: instrAndStep=004e, address=014e, enabled=0, bVal=0
+INFO: instrAndStep=004e, address=01ce, enabled=0, bVal=0
+INFO: instrAndStep=004f, address=004f, enabled=1, bVal=0
+INFO: instrAndStep=004f, address=00cf, enabled=0, bVal=0
+INFO: instrAndStep=004f, address=014f, enabled=0, bVal=0
+INFO: instrAndStep=004f, address=01cf, enabled=0, bVal=0
+INFO: instrAndStep=0050, address=0050, enabled=1, bVal=4
+INFO: instrAndStep=0050, address=00d0, enabled=1, bVal=4
+INFO: instrAndStep=0050, address=0150, enabled=1, bVal=4
+INFO: instrAndStep=0050, address=01d0, enabled=1, bVal=4
+INFO: instrAndStep=0051, address=0051, enabled=1, bVal=8
+INFO: instrAndStep=0051, address=00d1, enabled=1, bVal=8
+INFO: instrAndStep=0051, address=0151, enabled=1, bVal=8
+INFO: instrAndStep=0051, address=01d1, enabled=1, bVal=8
+INFO: instrAndStep=0052, address=0052, enabled=0, bVal=2
+INFO: instrAndStep=0052, address=00d2, enabled=0, bVal=2
+INFO: instrAndStep=0052, address=0152, enabled=0, bVal=2
+INFO: instrAndStep=0052, address=01d2, enabled=0, bVal=2
+INFO: instrAndStep=0053, address=0053, enabled=0, bVal=0
+INFO: instrAndStep=0053, address=00d3, enabled=0, bVal=0
+INFO: instrAndStep=0053, address=0153, enabled=0, bVal=0
+INFO: instrAndStep=0053, address=01d3, enabled=0, bVal=0
+INFO: instrAndStep=0054, address=0054, enabled=0, bVal=0
+INFO: instrAndStep=0054, address=00d4, enabled=0, bVal=0
+INFO: instrAndStep=0054, address=0154, enabled=0, bVal=0
+INFO: instrAndStep=0054, address=01d4, enabled=0, bVal=0
+INFO: instrAndStep=0055, address=0055, enabled=0, bVal=0
+INFO: instrAndStep=0055, address=00d5, enabled=0, bVal=0
+INFO: instrAndStep=0055, address=0155, enabled=0, bVal=0
+INFO: instrAndStep=0055, address=01d5, enabled=0, bVal=0
+INFO: instrAndStep=0056, address=0056, enabled=0, bVal=0
+INFO: instrAndStep=0056, address=00d6, enabled=0, bVal=0
+INFO: instrAndStep=0056, address=0156, enabled=0, bVal=0
+INFO: instrAndStep=0056, address=01d6, enabled=0, bVal=0
+INFO: instrAndStep=0057, address=0057, enabled=0, bVal=0
+INFO: instrAndStep=0057, address=00d7, enabled=0, bVal=0
+INFO: instrAndStep=0057, address=0157, enabled=0, bVal=0
+INFO: instrAndStep=0057, address=01d7, enabled=0, bVal=0
+INFO: instrAndStep=0058, address=0058, enabled=1, bVal=4
+INFO: instrAndStep=0058, address=00d8, enabled=1, bVal=4
+INFO: instrAndStep=0058, address=0158, enabled=1, bVal=4
+INFO: instrAndStep=0058, address=01d8, enabled=1, bVal=4
+INFO: instrAndStep=0059, address=0059, enabled=1, bVal=8
+INFO: instrAndStep=0059, address=00d9, enabled=1, bVal=8
+INFO: instrAndStep=0059, address=0159, enabled=1, bVal=8
+INFO: instrAndStep=0059, address=01d9, enabled=1, bVal=8
+INFO: instrAndStep=005a, address=005a, enabled=1, bVal=2
+INFO: instrAndStep=005a, address=00da, enabled=0, bVal=2
+INFO: instrAndStep=005a, address=015a, enabled=0, bVal=2
+INFO: instrAndStep=005a, address=01da, enabled=0, bVal=2
+INFO: instrAndStep=005b, address=005b, enabled=1, bVal=0
+INFO: instrAndStep=005b, address=00db, enabled=0, bVal=0
+INFO: instrAndStep=005b, address=015b, enabled=0, bVal=0
+INFO: instrAndStep=005b, address=01db, enabled=0, bVal=0
+INFO: instrAndStep=005c, address=005c, enabled=1, bVal=0
+INFO: instrAndStep=005c, address=00dc, enabled=0, bVal=0
+INFO: instrAndStep=005c, address=015c, enabled=0, bVal=0
+INFO: instrAndStep=005c, address=01dc, enabled=0, bVal=0
+INFO: instrAndStep=005d, address=005d, enabled=1, bVal=0
+INFO: instrAndStep=005d, address=00dd, enabled=0, bVal=0
+INFO: instrAndStep=005d, address=015d, enabled=0, bVal=0
+INFO: instrAndStep=005d, address=01dd, enabled=0, bVal=0
+INFO: instrAndStep=005e, address=005e, enabled=1, bVal=0
+INFO: instrAndStep=005e, address=00de, enabled=0, bVal=0
+INFO: instrAndStep=005e, address=015e, enabled=0, bVal=0
+INFO: instrAndStep=005e, address=01de, enabled=0, bVal=0
+INFO: instrAndStep=005f, address=005f, enabled=1, bVal=0
+INFO: instrAndStep=005f, address=00df, enabled=0, bVal=0
+INFO: instrAndStep=005f, address=015f, enabled=0, bVal=0
+INFO: instrAndStep=005f, address=01df, enabled=0, bVal=0
+INFO: instrAndStep=0060, address=0060, enabled=1, bVal=4
+INFO: instrAndStep=0060, address=00e0, enabled=1, bVal=4
+INFO: instrAndStep=0060, address=0160, enabled=1, bVal=4
+INFO: instrAndStep=0060, address=01e0, enabled=1, bVal=4
+INFO: instrAndStep=0061, address=0061, enabled=1, bVal=8
+INFO: instrAndStep=0061, address=00e1, enabled=1, bVal=8
+INFO: instrAndStep=0061, address=0161, enabled=1, bVal=8
+INFO: instrAndStep=0061, address=01e1, enabled=1, bVal=8
+INFO: instrAndStep=0062, address=0062, enabled=1, bVal=2
+INFO: instrAndStep=0062, address=00e2, enabled=0, bVal=2
+INFO: instrAndStep=0062, address=0162, enabled=0, bVal=2
+INFO: instrAndStep=0062, address=01e2, enabled=0, bVal=2
+INFO: instrAndStep=0063, address=0063, enabled=1, bVal=0
+INFO: instrAndStep=0063, address=00e3, enabled=0, bVal=0
+INFO: instrAndStep=0063, address=0163, enabled=0, bVal=0
+INFO: instrAndStep=0063, address=01e3, enabled=0, bVal=0
+INFO: instrAndStep=0064, address=0064, enabled=1, bVal=0
+INFO: instrAndStep=0064, address=00e4, enabled=0, bVal=0
+INFO: instrAndStep=0064, address=0164, enabled=0, bVal=0
+INFO: instrAndStep=0064, address=01e4, enabled=0, bVal=0
+INFO: instrAndStep=0065, address=0065, enabled=1, bVal=0
+INFO: instrAndStep=0065, address=00e5, enabled=0, bVal=0
+INFO: instrAndStep=0065, address=0165, enabled=0, bVal=0
+INFO: instrAndStep=0065, address=01e5, enabled=0, bVal=0
+INFO: instrAndStep=0066, address=0066, enabled=1, bVal=0
+INFO: instrAndStep=0066, address=00e6, enabled=0, bVal=0
+INFO: instrAndStep=0066, address=0166, enabled=0, bVal=0
+INFO: instrAndStep=0066, address=01e6, enabled=0, bVal=0
+INFO: instrAndStep=0067, address=0067, enabled=1, bVal=0
+INFO: instrAndStep=0067, address=00e7, enabled=0, bVal=0
+INFO: instrAndStep=0067, address=0167, enabled=0, bVal=0
+INFO: instrAndStep=0067, address=01e7, enabled=0, bVal=0
+INFO: instrAndStep=0068, address=0068, enabled=1, bVal=4
+INFO: instrAndStep=0068, address=00e8, enabled=1, bVal=4
+INFO: instrAndStep=0068, address=0168, enabled=1, bVal=4
+INFO: instrAndStep=0068, address=01e8, enabled=1, bVal=4
+INFO: instrAndStep=0069, address=0069, enabled=1, bVal=8
+INFO: instrAndStep=0069, address=00e9, enabled=1, bVal=8
+INFO: instrAndStep=0069, address=0169, enabled=1, bVal=8
+INFO: instrAndStep=0069, address=01e9, enabled=1, bVal=8
+INFO: instrAndStep=006a, address=006a, enabled=0, bVal=2
+INFO: instrAndStep=006a, address=00ea, enabled=1, bVal=2
+INFO: instrAndStep=006a, address=016a, enabled=1, bVal=2
+INFO: instrAndStep=006a, address=01ea, enabled=1, bVal=2
+INFO: instrAndStep=006b, address=006b, enabled=0, bVal=0
+INFO: instrAndStep=006b, address=00eb, enabled=1, bVal=0
+INFO: instrAndStep=006b, address=016b, enabled=1, bVal=0
+INFO: instrAndStep=006b, address=01eb, enabled=1, bVal=0
+INFO: instrAndStep=006c, address=006c, enabled=0, bVal=0
+INFO: instrAndStep=006c, address=00ec, enabled=1, bVal=0
+INFO: instrAndStep=006c, address=016c, enabled=1, bVal=0
+INFO: instrAndStep=006c, address=01ec, enabled=1, bVal=0
+INFO: instrAndStep=006d, address=006d, enabled=0, bVal=0
+INFO: instrAndStep=006d, address=00ed, enabled=1, bVal=0
+INFO: instrAndStep=006d, address=016d, enabled=1, bVal=0
+INFO: instrAndStep=006d, address=01ed, enabled=1, bVal=0
+INFO: instrAndStep=006e, address=006e, enabled=0, bVal=0
+INFO: instrAndStep=006e, address=00ee, enabled=1, bVal=0
+INFO: instrAndStep=006e, address=016e, enabled=1, bVal=0
+INFO: instrAndStep=006e, address=01ee, enabled=1, bVal=0
+INFO: instrAndStep=006f, address=006f, enabled=0, bVal=0
+INFO: instrAndStep=006f, address=00ef, enabled=1, bVal=0
+INFO: instrAndStep=006f, address=016f, enabled=1, bVal=0
+INFO: instrAndStep=006f, address=01ef, enabled=1, bVal=0
+INFO: instrAndStep=0070, address=0070, enabled=1, bVal=4
+INFO: instrAndStep=0070, address=00f0, enabled=1, bVal=4
+INFO: instrAndStep=0070, address=0170, enabled=1, bVal=4
+INFO: instrAndStep=0070, address=01f0, enabled=1, bVal=4
+INFO: instrAndStep=0071, address=0071, enabled=1, bVal=8
+INFO: instrAndStep=0071, address=00f1, enabled=1, bVal=8
+INFO: instrAndStep=0071, address=0171, enabled=1, bVal=8
+INFO: instrAndStep=0071, address=01f1, enabled=1, bVal=8
+INFO: instrAndStep=0072, address=0072, enabled=0, bVal=16
+INFO: instrAndStep=0072, address=00f2, enabled=0, bVal=16
+INFO: instrAndStep=0072, address=0172, enabled=0, bVal=16
+INFO: instrAndStep=0072, address=01f2, enabled=0, bVal=16
+INFO: instrAndStep=0073, address=0073, enabled=0, bVal=0
+INFO: instrAndStep=0073, address=00f3, enabled=0, bVal=0
+INFO: instrAndStep=0073, address=0173, enabled=0, bVal=0
+INFO: instrAndStep=0073, address=01f3, enabled=0, bVal=0
+INFO: instrAndStep=0074, address=0074, enabled=0, bVal=0
+INFO: instrAndStep=0074, address=00f4, enabled=0, bVal=0
+INFO: instrAndStep=0074, address=0174, enabled=0, bVal=0
+INFO: instrAndStep=0074, address=01f4, enabled=0, bVal=0
+INFO: instrAndStep=0075, address=0075, enabled=0, bVal=0
+INFO: instrAndStep=0075, address=00f5, enabled=0, bVal=0
+INFO: instrAndStep=0075, address=0175, enabled=0, bVal=0
+INFO: instrAndStep=0075, address=01f5, enabled=0, bVal=0
+INFO: instrAndStep=0076, address=0076, enabled=0, bVal=0
+INFO: instrAndStep=0076, address=00f6, enabled=0, bVal=0
+INFO: instrAndStep=0076, address=0176, enabled=0, bVal=0
+INFO: instrAndStep=0076, address=01f6, enabled=0, bVal=0
+INFO: instrAndStep=0077, address=0077, enabled=0, bVal=0
+INFO: instrAndStep=0077, address=00f7, enabled=0, bVal=0
+INFO: instrAndStep=0077, address=0177, enabled=0, bVal=0
+INFO: instrAndStep=0077, address=01f7, enabled=0, bVal=0
+INFO: instrAndStep=0078, address=0078, enabled=1, bVal=4
+INFO: instrAndStep=0078, address=00f8, enabled=1, bVal=4
+INFO: instrAndStep=0078, address=0178, enabled=1, bVal=4
+INFO: instrAndStep=0078, address=01f8, enabled=1, bVal=4
+INFO: instrAndStep=0079, address=0079, enabled=1, bVal=8
+INFO: instrAndStep=0079, address=00f9, enabled=1, bVal=8
+INFO: instrAndStep=0079, address=0179, enabled=1, bVal=8
+INFO: instrAndStep=0079, address=01f9, enabled=1, bVal=8
+INFO: instrAndStep=007a, address=007a, enabled=0, bVal=0
+INFO: instrAndStep=007a, address=00fa, enabled=0, bVal=0
+INFO: instrAndStep=007a, address=017a, enabled=0, bVal=0
+INFO: instrAndStep=007a, address=01fa, enabled=0, bVal=0
+INFO: instrAndStep=007b, address=007b, enabled=0, bVal=0
+INFO: instrAndStep=007b, address=00fb, enabled=0, bVal=0
+INFO: instrAndStep=007b, address=017b, enabled=0, bVal=0
+INFO: instrAndStep=007b, address=01fb, enabled=0, bVal=0
+INFO: instrAndStep=007c, address=007c, enabled=0, bVal=0
+INFO: instrAndStep=007c, address=00fc, enabled=0, bVal=0
+INFO: instrAndStep=007c, address=017c, enabled=0, bVal=0
+INFO: instrAndStep=007c, address=01fc, enabled=0, bVal=0
+INFO: instrAndStep=007d, address=007d, enabled=0, bVal=0
+INFO: instrAndStep=007d, address=00fd, enabled=0, bVal=0
+INFO: instrAndStep=007d, address=017d, enabled=0, bVal=0
+INFO: instrAndStep=007d, address=01fd, enabled=0, bVal=0
+INFO: instrAndStep=007e, address=007e, enabled=0, bVal=0
+INFO: instrAndStep=007e, address=00fe, enabled=0, bVal=0
+INFO: instrAndStep=007e, address=017e, enabled=0, bVal=0
+INFO: instrAndStep=007e, address=01fe, enabled=0, bVal=0
+INFO: instrAndStep=007f, address=007f, enabled=0, bVal=0
+INFO: instrAndStep=007f, address=00ff, enabled=0, bVal=0
+INFO: instrAndStep=007f, address=017f, enabled=0, bVal=0
+INFO: instrAndStep=007f, address=01ff, enabled=0, bVal=0
+INFO: Done writing control logic chip number 1
 INFO: Reading contents of EEPROM ...
 0000:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
 0008:   00000100 00001000 00100000 01000001 00000000 00000000 00000000 00000000 
@@ -10,13 +524,13 @@ INFO: Reading contents of EEPROM ...
 0030:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0038:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 
-0040:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
+0040:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0048:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-0050:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
+0050:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0058:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 0060:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-0068:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-0070:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
+0068:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+0070:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0078:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0080:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -28,13 +542,13 @@ INFO: Reading contents of EEPROM ...
 00b0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00b8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 
-00c0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+00c0:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 00c8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00d0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00d8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00e0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-00e8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-00f0:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
+00e8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
+00f0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00f8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0100:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -46,13 +560,13 @@ INFO: Reading contents of EEPROM ...
 0130:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0138:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 
-0140:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+0140:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 0148:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0150:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0158:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0160:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-0168:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-0170:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
+0168:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
+0170:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0178:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0180:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -64,13 +578,13 @@ INFO: Reading contents of EEPROM ...
 01b0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01b8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 
-01c0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+01c0:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 01c8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01d0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01d8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01e0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-01e8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-01f0:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
+01e8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
+01f0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01f8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0200:   00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 

@@ -104,9 +104,10 @@
 
 #define flags_Z      (1L << 0) // zero
 #define flags_C      (1L << 1) // carry
+
 #define flags_UNSET  (0)       // ignore flags
-#define flags_ALLSET (0)       // ignore flags
-#define flags_ANYSET (0)       // ignore flags
+#define flags_ALLSET (1)       // ignore flags
+#define flags_ANYSET (2)       // ignore flags
 
 int logLevel = 0;
 
@@ -281,7 +282,7 @@ void setup() {
 
   log(logINFO, "start");
 
-  int EEPROM_type = EEPROM_control1;
+  int EEPROM_type = EEPROM_control2;
   switch (EEPROM_type) {
     case  EEPROM_control0:
       writeControlLogic(0);
