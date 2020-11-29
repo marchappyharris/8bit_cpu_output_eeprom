@@ -1,4 +1,4 @@
-⸮B⸮XR⸮
+
 INFO: start
 INFO: Clearing chip ... done
 INFO: Writing control logic chip number 1
@@ -458,30 +458,30 @@ INFO: instrAndStep=0071, address=0071, enabled=1, bVal=8
 INFO: instrAndStep=0071, address=00f1, enabled=1, bVal=8
 INFO: instrAndStep=0071, address=0171, enabled=1, bVal=8
 INFO: instrAndStep=0071, address=01f1, enabled=1, bVal=8
-INFO: instrAndStep=0072, address=0072, enabled=0, bVal=16
-INFO: instrAndStep=0072, address=00f2, enabled=0, bVal=16
-INFO: instrAndStep=0072, address=0172, enabled=0, bVal=16
-INFO: instrAndStep=0072, address=01f2, enabled=0, bVal=16
-INFO: instrAndStep=0073, address=0073, enabled=0, bVal=0
-INFO: instrAndStep=0073, address=00f3, enabled=0, bVal=0
-INFO: instrAndStep=0073, address=0173, enabled=0, bVal=0
-INFO: instrAndStep=0073, address=01f3, enabled=0, bVal=0
-INFO: instrAndStep=0074, address=0074, enabled=0, bVal=0
-INFO: instrAndStep=0074, address=00f4, enabled=0, bVal=0
-INFO: instrAndStep=0074, address=0174, enabled=0, bVal=0
-INFO: instrAndStep=0074, address=01f4, enabled=0, bVal=0
-INFO: instrAndStep=0075, address=0075, enabled=0, bVal=0
-INFO: instrAndStep=0075, address=00f5, enabled=0, bVal=0
-INFO: instrAndStep=0075, address=0175, enabled=0, bVal=0
-INFO: instrAndStep=0075, address=01f5, enabled=0, bVal=0
-INFO: instrAndStep=0076, address=0076, enabled=0, bVal=0
-INFO: instrAndStep=0076, address=00f6, enabled=0, bVal=0
-INFO: instrAndStep=0076, address=0176, enabled=0, bVal=0
-INFO: instrAndStep=0076, address=01f6, enabled=0, bVal=0
-INFO: instrAndStep=0077, address=0077, enabled=0, bVal=0
-INFO: instrAndStep=0077, address=00f7, enabled=0, bVal=0
-INFO: instrAndStep=0077, address=0177, enabled=0, bVal=0
-INFO: instrAndStep=0077, address=01f7, enabled=0, bVal=0
+INFO: instrAndStep=0072, address=0072, enabled=1, bVal=16
+INFO: instrAndStep=0072, address=00f2, enabled=1, bVal=16
+INFO: instrAndStep=0072, address=0172, enabled=1, bVal=16
+INFO: instrAndStep=0072, address=01f2, enabled=1, bVal=16
+INFO: instrAndStep=0073, address=0073, enabled=1, bVal=0
+INFO: instrAndStep=0073, address=00f3, enabled=1, bVal=0
+INFO: instrAndStep=0073, address=0173, enabled=1, bVal=0
+INFO: instrAndStep=0073, address=01f3, enabled=1, bVal=0
+INFO: instrAndStep=0074, address=0074, enabled=1, bVal=0
+INFO: instrAndStep=0074, address=00f4, enabled=1, bVal=0
+INFO: instrAndStep=0074, address=0174, enabled=1, bVal=0
+INFO: instrAndStep=0074, address=01f4, enabled=1, bVal=0
+INFO: instrAndStep=0075, address=0075, enabled=1, bVal=0
+INFO: instrAndStep=0075, address=00f5, enabled=1, bVal=0
+INFO: instrAndStep=0075, address=0175, enabled=1, bVal=0
+INFO: instrAndStep=0075, address=01f5, enabled=1, bVal=0
+INFO: instrAndStep=0076, address=0076, enabled=1, bVal=0
+INFO: instrAndStep=0076, address=00f6, enabled=1, bVal=0
+INFO: instrAndStep=0076, address=0176, enabled=1, bVal=0
+INFO: instrAndStep=0076, address=01f6, enabled=1, bVal=0
+INFO: instrAndStep=0077, address=0077, enabled=1, bVal=0
+INFO: instrAndStep=0077, address=00f7, enabled=1, bVal=0
+INFO: instrAndStep=0077, address=0177, enabled=1, bVal=0
+INFO: instrAndStep=0077, address=01f7, enabled=1, bVal=0
 INFO: instrAndStep=0078, address=0078, enabled=1, bVal=4
 INFO: instrAndStep=0078, address=00f8, enabled=1, bVal=4
 INFO: instrAndStep=0078, address=0178, enabled=1, bVal=4
@@ -490,30 +490,30 @@ INFO: instrAndStep=0079, address=0079, enabled=1, bVal=8
 INFO: instrAndStep=0079, address=00f9, enabled=1, bVal=8
 INFO: instrAndStep=0079, address=0179, enabled=1, bVal=8
 INFO: instrAndStep=0079, address=01f9, enabled=1, bVal=8
-INFO: instrAndStep=007a, address=007a, enabled=0, bVal=0
-INFO: instrAndStep=007a, address=00fa, enabled=0, bVal=0
-INFO: instrAndStep=007a, address=017a, enabled=0, bVal=0
-INFO: instrAndStep=007a, address=01fa, enabled=0, bVal=0
-INFO: instrAndStep=007b, address=007b, enabled=0, bVal=0
-INFO: instrAndStep=007b, address=00fb, enabled=0, bVal=0
-INFO: instrAndStep=007b, address=017b, enabled=0, bVal=0
-INFO: instrAndStep=007b, address=01fb, enabled=0, bVal=0
-INFO: instrAndStep=007c, address=007c, enabled=0, bVal=0
-INFO: instrAndStep=007c, address=00fc, enabled=0, bVal=0
-INFO: instrAndStep=007c, address=017c, enabled=0, bVal=0
-INFO: instrAndStep=007c, address=01fc, enabled=0, bVal=0
-INFO: instrAndStep=007d, address=007d, enabled=0, bVal=0
-INFO: instrAndStep=007d, address=00fd, enabled=0, bVal=0
-INFO: instrAndStep=007d, address=017d, enabled=0, bVal=0
-INFO: instrAndStep=007d, address=01fd, enabled=0, bVal=0
-INFO: instrAndStep=007e, address=007e, enabled=0, bVal=0
-INFO: instrAndStep=007e, address=00fe, enabled=0, bVal=0
-INFO: instrAndStep=007e, address=017e, enabled=0, bVal=0
-INFO: instrAndStep=007e, address=01fe, enabled=0, bVal=0
-INFO: instrAndStep=007f, address=007f, enabled=0, bVal=0
-INFO: instrAndStep=007f, address=00ff, enabled=0, bVal=0
-INFO: instrAndStep=007f, address=017f, enabled=0, bVal=0
-INFO: instrAndStep=007f, address=01ff, enabled=0, bVal=0
+INFO: instrAndStep=007a, address=007a, enabled=1, bVal=0
+INFO: instrAndStep=007a, address=00fa, enabled=1, bVal=0
+INFO: instrAndStep=007a, address=017a, enabled=1, bVal=0
+INFO: instrAndStep=007a, address=01fa, enabled=1, bVal=0
+INFO: instrAndStep=007b, address=007b, enabled=1, bVal=0
+INFO: instrAndStep=007b, address=00fb, enabled=1, bVal=0
+INFO: instrAndStep=007b, address=017b, enabled=1, bVal=0
+INFO: instrAndStep=007b, address=01fb, enabled=1, bVal=0
+INFO: instrAndStep=007c, address=007c, enabled=1, bVal=0
+INFO: instrAndStep=007c, address=00fc, enabled=1, bVal=0
+INFO: instrAndStep=007c, address=017c, enabled=1, bVal=0
+INFO: instrAndStep=007c, address=01fc, enabled=1, bVal=0
+INFO: instrAndStep=007d, address=007d, enabled=1, bVal=0
+INFO: instrAndStep=007d, address=00fd, enabled=1, bVal=0
+INFO: instrAndStep=007d, address=017d, enabled=1, bVal=0
+INFO: instrAndStep=007d, address=01fd, enabled=1, bVal=0
+INFO: instrAndStep=007e, address=007e, enabled=1, bVal=0
+INFO: instrAndStep=007e, address=00fe, enabled=1, bVal=0
+INFO: instrAndStep=007e, address=017e, enabled=1, bVal=0
+INFO: instrAndStep=007e, address=01fe, enabled=1, bVal=0
+INFO: instrAndStep=007f, address=007f, enabled=1, bVal=0
+INFO: instrAndStep=007f, address=00ff, enabled=1, bVal=0
+INFO: instrAndStep=007f, address=017f, enabled=1, bVal=0
+INFO: instrAndStep=007f, address=01ff, enabled=1, bVal=0
 INFO: Done writing control logic chip number 1
 INFO: Reading contents of EEPROM ...
 0000:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -531,7 +531,7 @@ INFO: Reading contents of EEPROM ...
 0058:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0060:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
 0068:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
-0070:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+0070:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
 0078:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0080:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -549,7 +549,7 @@ INFO: Reading contents of EEPROM ...
 00d8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00e0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 00e8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-00f0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+00f0:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
 00f8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0100:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -567,7 +567,7 @@ INFO: Reading contents of EEPROM ...
 0158:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0160:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 0168:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-0170:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+0170:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
 0178:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0180:   00000100 00001000 00000000 00100000 01000001 00000000 00000000 00000000 
@@ -585,7 +585,7 @@ INFO: Reading contents of EEPROM ...
 01d8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01e0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 01e8:   00000100 00001000 00000010 00000000 00000000 00000000 00000000 00000000 
-01f0:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
+01f0:   00000100 00001000 00010000 00000000 00000000 00000000 00000000 00000000 
 01f8:   00000100 00001000 00000000 00000000 00000000 00000000 00000000 00000000 
 
 0200:   00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
